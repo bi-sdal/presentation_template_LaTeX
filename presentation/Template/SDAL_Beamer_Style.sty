@@ -1,0 +1,285 @@
+\ProvidesPackageRCS $Header: SDAL_Beamer.sty ,v 1 05/13/2016 $
+
+\mode<presentation>
+
+% Set presentation size
+
+\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.5,debug]{beamerposter} 
+\setbeamersize{text margin left=.25in,text margin right=.25in}
+
+% Set Fonts
+
+%\usepackage[T1]{fontenc}
+%\usepackage[default]{raleway}
+ 
+ \usefonttheme{serif}
+ 
+ \setbeamerfont{frametitle}{series=\bfseries} 
+\setbeamerfont{title}{series=\bfseries} 
+\setbeamerfont{author}{series=\bfseries} 
+
+%\usepackage[T1]{fontenc}
+%\usepackage[nosfdefault]{raleway}
+
+% Set the size of the font
+
+\usepackage{scrextend}
+\changefontsizes{14pt}
+\setbeamerfont{title}{size=\fontsize{17pt}{17pt}}
+\setbeamerfont{author}{size=\fontsize{14pt}{14pt}}
+\setbeamerfont{frametitle}{size=\fontsize{17pt}{17pt}}
+\setbeamerfont{date}{size=\fontsize{14pt}{14pt}}
+\setbeamerfont*{structure}{size*={17pt}{17pt}}
+\setbeamerfont*{tiny structure}{size*={6pt}{6pt}}
+  
+% Table of Contents
+
+\setbeamertemplate{section in toc}[ball]
+\setbeamertemplate{subsection in toc}[square]
+
+\setbeamertemplate{subsection in toc}{\hspace{1.2em}{\color{BIlightblue}\rule[0.3ex]{6pt}{6pt}}~\inserttocsubsection\par}
+
+% Set Color
+
+\definecolor{VTmaroon}{RGB}{102,0,0} 
+\definecolor{VTorange}{RGB}{255,102,0}
+\definecolor{BIdarkblue}{RGB}{18,37,45}
+\definecolor{BIaquablue}{RGB}{126,168,173}
+\definecolor{BIcoolgrey}{RGB}{153,153,153}
+\definecolor{BIlightblue}{RGB}{93,137,180}
+\definecolor{BIlightgreen}{RGB}{141,194,136}
+
+ 
+\setbeamercolor*{title}{fg=black}
+\setbeamercolor{author}{fg=black} 
+\setbeamercolor{frametitle}{fg=black} 
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=black}
+\setbeamercolor{itemize subsubitem}{fg=black}
+\setbeamercolor{itemize subitem}{fg=black}
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{section number projected}{bg=BIlightblue,fg=white}
+
+% Lists
+
+\makeatletter
+\renewcommand{\itemize}[1][]{%
+  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+    \advance\@itemdepth\@ne
+    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+    \list
+      {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+      {%
+        \setlength\topsep{0pt}%NEW
+        \setlength\partopsep{0pt}%NEW
+        \setlength\itemsep{0pt}%NEW
+        \def\makelabel##1{%
+          {%
+            \hss\llap{{%
+                \usebeamerfont*{itemize \beameritemnestingprefix item}%
+                \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+          }%
+        }%
+      }
+  \fi%
+  \beamer@cramped%
+  \raggedright%
+  \beamer@firstlineitemizeunskip%
+}
+\makeatother
+
+\setlength\topsep{-10pt}
+\setlength\partopsep{-10pt}
+
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{itemize subitem}{---}
+\setbeamertemplate{itemize subsubitem}[circle]
+
+% TOC
+
+\makeatletter
+\patchcmd{\beamer@sectionintoc}
+  {\vfill}
+  {\vskip\itemsep}
+  {}
+  {}
+\makeatother  
+
+% Remove navigation symbols
+
+\setbeamertemplate{navigation symbols}{}
+
+% Format Title Page
+
+\defbeamertemplate*{title page}{customized}[1][]
+{
+\centering
+\vspace{.9in}\hspace*{-3.8in}
+\begin{overlayarea}{4.1in}{1cm}
+\centering{
+\usebeamerfont{title}\inserttitle\par}
+\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+\end{overlayarea}\\
+\vspace{.2in}\hspace*{-1in}
+\begin{overlayarea}{4in}{1cm}
+\centering{
+\usebeamerfont{date}\insertdate\par \vspace{.1in}
+\usebeamerfont{author}\insertauthor\par
+\usebeamerfont{institute}\insertinstitute\par}
+\end{overlayarea}
+}
+
+%%% Formatting Different Frame Styles
+
+% Title
+
+\makeatletter
+\define@key{beamerframe}{Title}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Title.jpg}
+\setbeamertemplate{frametitle}[default][right]
+\addtobeamertemplate{frametitle}{\vskip.1in\hspace*{.5in}}{}}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+% Outline
+
+\makeatletter
+\define@key{beamerframe}{ToC}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Blank.jpg}}
+\setbeamertemplate{frametitle}[default][right]
+\addtobeamertemplate{frametitle}{\vskip.1in\hspace*{.5in}}{}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+% Blank
+
+\makeatletter
+\define@key{beamerframe}{Blank}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Blank.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{%
+\leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{palette quaternary}%
+    \vspace{.08in}\insertnavigation{\paperwidth}{}{\hskip0pt plus1filll}
+    \end{beamercolorbox}%
+  }
+}
+}
+\makeatother
+
+% BlankLogo
+
+\makeatletter
+\define@key{beamerframe}{BlankLogo}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/BlankLogo.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+% Basic1
+
+\makeatletter
+\define@key{beamerframe}{Basic1}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Basic1.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{%
+\leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{palette quaternary}%
+    \vspace{.08in}\insertnavigation{\paperwidth}{}{\hskip0pt plus1filll}
+    \end{beamercolorbox}%
+  }
+}
+}
+\makeatother
+
+% Basic2
+
+\makeatletter
+\define@key{beamerframe}{Basic2}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Basic2.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{%
+\leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{palette quaternary}%
+    \vspace{.08in}\insertnavigation{\paperwidth}{}{\hskip0pt plus1filll}
+    \end{beamercolorbox}%
+  }
+}
+}
+\makeatother
+
+% Basic3
+
+\makeatletter
+\define@key{beamerframe}{Basic3}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Basic3.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+% Basic1Logo
+
+\makeatletter
+\define@key{beamerframe}{Basic1Logo}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Basic1Logo.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+% Basic2Logo
+
+\makeatletter
+\define@key{beamerframe}{Basic2Logo}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Basic2Logo.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+% Basic3Logo
+
+\makeatletter
+\define@key{beamerframe}{Basic3Logo}[true]{%
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Basic3Logo.jpg}}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vspace{.23in}{\insertframetitle\hspace{.2in}}\end{flushright}}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+% Section
+
+\makeatletter
+\define@key{beamerframe}{Section}[true]{%
+%\setbeamertemplate{frametitle}[default][right]
+%\addtobeamertemplate{frametitle}{\vskip1.4in\hspace*{-.7in}}{}
+\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{Template/slides/Section.jpg}}
+\hspace*{-1.8in}
+\setbeamertemplate{frametitle}
+{\begin{flushright}\vskip1.5in{\insertframetitle}\end{flushright}}
+\setbeamertemplate{footline}{}
+}
+\makeatother
+
+\mode
+<all>

@@ -1,0 +1,163 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% To use this template, copy and paste the Template folder found here an place within the folder your beamer presentation is located.
+% Make sure to include the following code as the first two lines of your document:
+% \documentclass[compress]{beamer}
+% \input{Template/SDAL_Beamer_Style.sty}
+
+% This file includes instructions on how to use the template
+% e.g., how to call up specific frame formats
+
+% The necessary packages are already loaded within the .sty document. 
+% You must add specific ones if needed depending on your needs.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[compress]{beamer}
+\input{Template/SDAL_Beamer_Style.sty}
+
+\usepackage[english]{babel}
+
+\usepackage{csquotes}
+
+\usepackage[pscoord]{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
+
+\newcommand{\placetextbox}[3]{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+    \setbox0=\hbox{#3}% Put <stuff> in a box
+    \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+        \put(\LenToUnit{#1\paperwidth},\LenToUnit{#2\paperheight}){\vtop{{\null}\makebox[0pt][c]{#3}}}%
+    }%
+}%
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+
+
+% Template Colors: VTmaroon, VTorange, BIdarkblue, BIaquablue, BIcoolgrey, BIlightblue, BIlightgreen
+
+\title[SDAL]{\vspace{-0.85in}Doctor Who}
+\author{Me, Myself, and I\\ \tiny{Mother of Dragons}}
+\date[]{July 13, 2305}
+
+% For long titles and/or subtitles, will need to use \vspace[-XXin] to align accordingly
+
+\begin{document}
+
+% Note on progress tracker:
+% If you do not want the progress tracker in the footer, do not use \section or \subsections
+% Progress tracker online works on Blank, Basic 1 and Basic 2 slide types
+
+% Compile twice after adding sections and subsection to get them to appear
+% Subsections are represented by the dots in the footer. Do not use sections if you do not want the dots.
+% Place subsections right above that slide to have dots highlight appropriately
+
+% Different format names are listed in title slides
+% Insert as * in \begin{frame}[*] 
+
+% For long frame titles , will need to use \vspace[-XXin] to align accordingly
+% If progress tracker gets in the way for these, can remove from that page using \begin{frame}[FORMAT_NAME,plain]
+
+% If content runs off the slide, the title will move! Split into two slides if this is the case.
+
+\begin{frame}[BlankLogo] \frametitle{}
+    \begin{figure}
+    \centering
+    \includegraphics[height=0.9\textheight]{figures/phd040907s_bingo}
+    \label{fig:phd040907sbingo}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[Title]
+    \titlepage
+\end{frame}
+
+% If you do not want an outline, do not include this slide
+% Edit toc depth for what level you want included
+
+\begin{frame}[ToC] \frametitle{Outline}
+\setcounter{tocdepth}{2}
+\hfill
+\parbox[t]{.95\textwidth}{
+  \begin{minipage}[c][0.75\textheight]{\textwidth}
+      \linespread{1}
+      \tableofcontents
+  \end{minipage}
+}
+\end{frame}
+
+\section[SECTION]{SECTION}
+
+\begin{frame}[Blank] \frametitle{Format: Blank}
+    This is a test of the template.\\
+    The navigation bar on the bottom is optional.
+\end{frame}
+
+\begin{frame}[BlankLogo] \frametitle{Format: BlankLogo}
+    {\color{VTorange}{This is VTorange}}\\
+    {\color{VTmaroon}{This is VTmaroon}}\\
+    {\color{BIdarkblue}{This is BIdarkblue}}\\
+    {\color{BIaquablue}{This is BIaquablue}}\\
+    {\color{BIcoolgrey}{This is BIcoolgrey}}\\
+    {\color{BIlightblue}{This is BIlightblue}}\\
+    {\color{BIlightgreen}{This is BIlightgreen}}\\
+\end{frame}
+
+
+\subsection[Something 2]{Something 2}
+
+\begin{frame}[Basic1] \frametitle{Format: Basic1}
+    This is a long sample sentence to test the text width.\\
+    The navigation bar on the bottom is optional.
+\end{frame}
+
+\begin{frame}[Basic2] \frametitle{Format: Basic2}
+    This is sample text.
+    \begin{itemize}
+        \item Sample
+        \item This is a long sample sentence to test the text width.
+        \begin{itemize}
+            \item This is a nest listed
+            \begin{itemize}
+                \item Last level
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[Basic3] \frametitle{Format: Basic3}
+    Still a test of the template
+\end{frame}
+
+\begin{frame}[Section] \frametitle{Format: Section}
+\end{frame}
+
+% For long section titles, use \\ and then \vspace to align
+
+\section{Test Section}
+
+\begin{frame}[Basic1Logo] \frametitle{Format: Basic1Logo}
+    {\color{VTmaroon}{This is a test of the template}}
+\end{frame}
+
+\begin{frame}[Basic2Logo] \frametitle{Format: Basic2Logo}
+    {\color{VTmaroon}{This is a test of the template}}
+\end{frame}
+
+\section[Conclusion]{Conclusion}
+
+\begin{frame}[Basic3Logo] \frametitle{Format: Basic3Logo}
+    {\color{VTmaroon}{This is a test of the template}}
+\end{frame}
+
+\subsection{References}
+\begin{frame}[allowframebreaks, Blank]
+    \frametitle{References}
+    \nocite{*}
+    \tiny
+    \bibliographystyle{plain}
+    \bibliography{bib}
+\end{frame}
+
+\end{document}

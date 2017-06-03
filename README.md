@@ -1,8 +1,47 @@
-# GBCB Seminar Presentation 1
+# SDAL LaTeX Pressentation Template
 
-First of two presentatinos for my [GBCB](http://gbcb.vbi.vt.edu/gbcb/about_program) requrement:
+This is the LaTeX presetnation originally created by Emily Molfino when she was a 
+post-doc in the lab ~2016.
 
-GBCB 5004 : Seminar in Genetics, Bioinformatics, and Computational Biology.
-Students in the program will be required to register for seminar every semester.
-Most semesters, students will register on a pass-fail basis, but during their course of study, at least 2 formal presentations must be given and graded on an A-F basis.
-Note that the dissertation defense seminar does not count as one of these two presentations
+# How to use this template
+
+All files are located in the `presentation` directory.
+
+The `presentation.tex` is the presentation LaTeX file.
+
+> There are comments and notes in this file on how to use the document.
+
+Bibtex entries are placed in `bib.bib`.
+
+Figures are placed in the `figures` directory,
+and referenced in the `tex` file using `figures/my_figure`
+
+## Compile the presentation
+
+`cd` into the `presention` directory.
+
+then run:
+```
+	pdflatex presentation.tex
+	pdflatex presentation.tex
+```
+You will need to do this twice if you want the progress bar to be rendered correctly
+(this is also discussed within the comments in `presentation.tex`)
+
+## Compile the presentation with bibtex references
+
+`cd` into the `presentation directory
+
+```
+	pdflatex presentation.tex
+	bibtex presentation.aux
+	pdflatex presentation.tex
+```
+
+# Using the `Makefile`
+
+A make file has been created to run the above commands automatically.
+
+- `make presentation.pdf` will fully render the presentation with the correct progressbar and bibliography
+- `make clean` will delete all files created by `LaTeX` so you can start a clean compile
+- `make clean_teamp` will remove all the temporary files created during the compiling process

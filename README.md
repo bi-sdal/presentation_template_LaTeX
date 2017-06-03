@@ -42,6 +42,8 @@ You will need to do this twice if you want the progress bar to be rendered corre
 
 A make file has been created to run the above commands automatically.
 
+First, `cd` into the presentation, then you can run one of the below commands
+
 - `make presentation.pdf` will fully render the presentation with the correct progressbar and bibliography
 - `make clean` will delete all files created by `LaTeX` so you can start a clean compile
 - `make clean_teamp` will remove all the temporary files created during the compiling process
